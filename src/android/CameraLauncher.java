@@ -388,7 +388,7 @@ public class CameraLauncher extends CordovaPlugin implements MediaScannerConnect
         layout.setBackgroundColor(Color.parseColor("#80000000"));
 
         TextView text = new TextView(this.cordova.getActivity());
-        text.setPadding(50, 10, 50, 10);
+        text.setPadding(50, 50, 50, 10);
         text.setText(caption);
         layout.addView(text);
 
@@ -398,7 +398,7 @@ public class CameraLauncher extends CordovaPlugin implements MediaScannerConnect
         toast.setView(layout);
          
         // Set the countdown to display the toast
-        toastCountDown = new CountDownTimer(300000, 3000 /*Tick duration*/) {
+        toastCountDown = new CountDownTimer(300000, 300000 /*Tick duration*/) {
           public void onTick(long millisUntilFinished) {
             toast.show();
           }
