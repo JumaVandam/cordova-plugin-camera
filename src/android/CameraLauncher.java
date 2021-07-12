@@ -388,7 +388,7 @@ public class CameraLauncher extends CordovaPlugin implements MediaScannerConnect
         layout.setBackgroundColor(Color.parseColor("#80000000"));
 
         TextView text = new TextView(this.cordova.getActivity());
-        text.setPadding(50, 50, 50, 10);
+        text.setPadding(50, 100, 50, 10);
         text.setText(caption);
         layout.addView(text);
 
