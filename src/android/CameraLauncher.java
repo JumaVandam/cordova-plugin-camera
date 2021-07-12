@@ -32,6 +32,8 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.os.CountDownTimer;
 
+import com.google.android.material.snackbar.Snackbar;
+
 import android.Manifest;
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
@@ -121,7 +123,9 @@ public class CameraLauncher extends CordovaPlugin implements MediaScannerConnect
     private String caption; // caption to write over camera
 
     private static Toast toast;
+    private static Snackbar snackbar;
     private static CountDownTimer toastCountDown;
+    private static CountDownTimer snackCountDown;
 
     private static final String TIME_FORMAT = "yyyyMMdd_HHmmss";
 
@@ -392,24 +396,35 @@ public class CameraLauncher extends CordovaPlugin implements MediaScannerConnect
         text.setText(caption);
         layout.addView(text);
 
-        toast = new Toast(context);
-        toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 0);
-        toast.setDuration(Toast.LENGTH_LONG);
-        toast.setView(layout);
+        //toast = new Toast(context);
+        // toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 0);
+        // toast.setDuration(Toast.LENGTH_LONG);
+        // toast.setView(layout);
+
+        snackbar =  Snackbar.make(layout, caption, Snackbar.LENGTH_INDEFINITE);
+        // View view = snack.getView();
+        // FrameLayout.LayoutParams params =(FrameLayout.LayoutParams)view.getLayoutParams();
+        // params.gravity = Gravity.TOP;
+        // view.setLayoutParams(params);
+
          
         // Set the countdown to display the toast
-        toastCountDown = new CountDownTimer(300000, 300000 /*Tick duration*/) {
+        snackCountDown = new CountDownTimer(300000, 3000 /*Tick duration*/) {
           public void onTick(long millisUntilFinished) {
-            toast.show();
+            // toast.show();
+            snack.show();
           }
           public void onFinish() {
-            toast.cancel();
+            // toast.cancel();
+            snack.dismiss();
           }
         };
 
         // Show the toast and starts the countdown
-        toast.show();
-        toastCountDown.start();
+        // toast.show();
+        // toastCountDown.start();
+        snack.show();
+        snackCountDown.start();
     }
 
     /**
@@ -417,11 +432,17 @@ public class CameraLauncher extends CordovaPlugin implements MediaScannerConnect
      *
      */
     private void hideCameraCaption() {
-        if (toast != null) {
-            toast.cancel();
+        // if (toast != null) {
+        //     toast.cancel();
+        // }
+        // if (toastCountDown != null) {
+        //     toast.cancel();
+        // }
+        if (snack != null) {
+            snack.dismiss();
         }
-        if (toastCountDown != null) {
-            toastCountDown.cancel();
+        if (snackCountDown != null) {
+            snack.dismiss();
         }
     }
 
