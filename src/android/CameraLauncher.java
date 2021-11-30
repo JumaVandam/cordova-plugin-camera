@@ -394,7 +394,7 @@ public class CameraLauncher extends CordovaPlugin implements MediaScannerConnect
 
         toast = new Toast(context);
         toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 0);
-        toast.setDuration(Toast.LENGTH_LONG);
+        toast.setDuration(Toast.LENGTH_SHORT);
         toast.setView(layout);
 
          
